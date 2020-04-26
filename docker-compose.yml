@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+    
+    nginx:
+        build: ./nginx
+        container_name: maternity_of_graphics_nginx
+        restart: always
+        network_mode: bridge
+        links: 
+            - "api:api"
+        ports:
+            - "80:80"
+    
+    api:
+        container_name: maternity_of_graphics_api
+        build: ./api
+        restart: always
+        network_mode: bridge
+        expose:
+            - 5000
+        
