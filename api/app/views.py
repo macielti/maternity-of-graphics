@@ -4,6 +4,7 @@ from app import app
 from config import Configuration
 
 import matplotlib.pyplot as plt
+import secrets
 
 
 @app.route('/test/', methods=['GET'])
@@ -22,6 +23,8 @@ def plot():
     # Plot the data
     plt.plot(x, y)
 
+    plt.xticks(x)
+
     # Title of the graph
     if 'title' in json_data.keys():
         plt.title(json_data['title'])
@@ -32,7 +35,8 @@ def plot():
     if 'yLabel' in json_data.keys():
         plt.ylabel(json_data['yLabel'])
 
-    plt.savefig("/app/outputs/plot.png")
+    r_file_name =  secrets.token_hex(16)
+    plt.savefig(f'/app/outputs/{r_file_name}.png')
 
     return send_from_directory('/app/outputs/',
-                               'plot.png', as_attachment=True)
+                               f'{r_file_name}.png', as_attachment=True)
