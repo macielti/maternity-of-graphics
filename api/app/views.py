@@ -25,6 +25,8 @@ def plot():
 
     plt.xticks(x)
 
+    plt.grid(True)
+
     # Title of the graph
     if 'title' in json_data.keys():
         plt.title(json_data['title'])
@@ -39,4 +41,4 @@ def plot():
     plt.savefig(f'/app/outputs/{r_file_name}.png')
 
     return send_from_directory('/app/outputs/',
-                               f'{r_file_name}.png', as_attachment=True)
+                               f'{r_file_name}.png')
