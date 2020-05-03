@@ -17,6 +17,8 @@ services:
         build: ./api
         restart: always
         network_mode: bridge
+        volumes:
+            - ./outputs:/app/outputs
         expose:
             - 5000
         
